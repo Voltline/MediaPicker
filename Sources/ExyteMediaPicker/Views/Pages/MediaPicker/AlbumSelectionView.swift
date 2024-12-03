@@ -78,9 +78,9 @@ public struct ModeSwitcher: View {
 
     public var body: some View {
         Picker("", selection: $selection) {
-            Text("Photos")
+            Text("照片")
                 .tag(0)
-            Text("Albums")
+            Text("相簿")
                 .tag(1)
         }
         .pickerStyle(SegmentedPickerStyle())

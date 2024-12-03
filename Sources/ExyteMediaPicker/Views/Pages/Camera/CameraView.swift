@@ -66,7 +66,7 @@ struct StandardConrolsCameraView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button("Cancel") {
+                Button("取消") {
                     if cameraSelectionService.hasSelected {
                         viewModel.showingExitCameraConfirmation = true
                     } else {
@@ -100,7 +100,7 @@ struct StandardConrolsCameraView: View {
             VStack(spacing: 10) {
                 if cameraSelectionService.hasSelected {
                     HStack {
-                        Button("Done") {
+                        Button("完成") {
                             if cameraSelectionService.hasSelected {
                                 viewModel.setPickerMode(.cameraSelection)
                             }
@@ -127,7 +127,7 @@ struct StandardConrolsCameraView: View {
                     Button {
                         cameraViewModel.toggleFlash()
                     } label: {
-                        Image(cameraViewModel.flashEnabled ? "FlashOn" : "FlashOff", bundle: .current)
+                        Image(cameraViewModel.flashEnabled ? "启用闪光灯" : "关闭闪光灯", bundle: .current)
                     }
 
                     if capturingPhotos {
@@ -141,7 +141,7 @@ struct StandardConrolsCameraView: View {
                     Button {
                         cameraViewModel.flipCamera()
                     } label: {
-                        Image("FlipCamera", bundle: .current)
+                        Image("翻转摄像头", bundle: .current)
                     }
                 }
             }
@@ -159,12 +159,12 @@ struct StandardConrolsCameraView: View {
 
     var photoVideoToggle: some View {
         HStack {
-            Button("Video") {
+            Button("视频") {
                 capturingPhotos = false
             }
             .foregroundColor(capturingPhotos ? Color.white : Color.yellow)
 
-            Button("Photo") {
+            Button("照片") {
                 capturingPhotos = true
             }
             .foregroundColor(capturingPhotos ? Color.yellow : Color.white)

@@ -55,7 +55,7 @@ struct DefaultCameraSelectionContainer: View {
     var body: some View {
         VStack {
             HStack {
-                Button("Cancel") {
+                Button("取消") {
                     viewModel.onCancelCameraSelection(cameraSelectionService.hasSelected)
                 }
                 .foregroundColor(.white)
@@ -66,7 +66,7 @@ struct DefaultCameraSelectionContainer: View {
             CameraSelectionView(selectionParamsHolder: selectionParamsHolder)
 
             HStack {
-                Button("Done") {
+                Button("完成") {
                     showingPicker = false
                 }
                 Spacer()

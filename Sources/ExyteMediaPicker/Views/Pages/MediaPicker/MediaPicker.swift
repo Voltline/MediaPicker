@@ -232,7 +232,7 @@ public struct MediaPicker<AlbumSelectionContent: View, CameraSelectionContent: V
     }
 
     var deleteAllButton: some View {
-        Button("Delete All") {
+        Button("全部删除") {
             cameraSelectionService.removeAll()
             viewModel.setPickerMode(.photos)
             onChange(selectionService.mapToMedia())
@@ -241,7 +241,7 @@ public struct MediaPicker<AlbumSelectionContent: View, CameraSelectionContent: V
 
     var defaultHeaderView: some View {
         HStack {
-            Button("Cancel") {
+            Button("取消") {
                 selectionService.removeAll()
                 cameraSelectionService.removeAll()
                 isPresented = false

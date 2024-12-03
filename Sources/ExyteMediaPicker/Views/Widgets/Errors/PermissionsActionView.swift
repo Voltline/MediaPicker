@@ -38,15 +38,15 @@ private extension PermissionsActionView {
     func buildLibraryAction(_ action: PermissionsService.PhotoLibraryAction) -> some View {
         switch action {
         case .selectMore:
-            PermissionsErrorView(text: "Setup Photos access to see more photos here") {
+            PermissionsErrorView(text: "授权相册权限以查看图片") {
                 showSheet = true
             }
         case .authorize:
-            goToSettingsButton(text: "Allow Photos access in settings to see photos here")
+            goToSettingsButton(text: "在设置中启用相册权限以查看图片")
         case .unavailable:
-            PermissionsErrorView(text: "Sorry, Photos are not available.", action: nil)
+            PermissionsErrorView(text: "无法查看图片", action: nil)
         case .unknown:
-            fatalError("Unknown permission status.")
+            fatalError("未知权限问题")
         }
     }
     
@@ -54,11 +54,11 @@ private extension PermissionsActionView {
     func buildCameraAction(_ action: PermissionsService.CameraAction) -> some View {
         switch action {
         case .authorize:
-            goToSettingsButton(text: "Allow Camera access in settings to see live preview")
+            goToSettingsButton(text: "在设置中启用相机权限以查看实时预览")
         case .unavailable:
-            PermissionsErrorView(text: "Sorry, Camera is not available.", action: nil)
+            PermissionsErrorView(text: "摄像头不可用", action: nil)
         case .unknown:
-            fatalError("Unknown permission status.")
+            fatalError("未知权限问题")
         }
     }
     

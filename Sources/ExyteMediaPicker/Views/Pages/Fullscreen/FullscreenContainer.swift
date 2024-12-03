@@ -85,7 +85,7 @@ struct FullscreenContainer: View {
 
             if let selectedMediaModel = selectedMediaModel {
                 if selectionParamsHolder.selectionLimit == 1 {
-                    Button("Select") {
+                    Button("选择") {
                         selectionService.onSelect(assetMediaModel: selectedMediaModel)
                         shouldDismiss()
                     }

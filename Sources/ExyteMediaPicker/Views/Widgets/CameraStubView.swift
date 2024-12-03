@@ -16,12 +16,12 @@ struct CameraStubView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text("Camera")
+                Text("相机")
                     .font(.largeTitle)
-                Text("Unavailable on simulator. Use device for testing")
+                Text("模拟器不可用，请使用实机测试")
                     .font(.title3)
                     .multilineTextAlignment(.center)
-                Button("Close") {
+                Button("关闭") {
                     didPressCancel()
                 }
                 .padding()
