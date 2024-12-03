@@ -257,9 +257,9 @@ public struct MediaPicker<AlbumSelectionContent: View, CameraSelectionContent: V
                         }
                     )
             ) {
-                Text("Photos")
+                Text("照片")
                     .tag(0)
-                Text("Albums")
+                Text("相簿")
                     .tag(1)
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -267,7 +267,7 @@ public struct MediaPicker<AlbumSelectionContent: View, CameraSelectionContent: V
 
             Spacer()
 
-            Button("Done") {
+            Button("完成") {
                 if selectionService.selected.isEmpty, let current = currentFullscreenMedia {
                     onChange([current])
                 }
