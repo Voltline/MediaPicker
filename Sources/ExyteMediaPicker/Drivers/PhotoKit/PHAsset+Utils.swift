@@ -42,8 +42,10 @@ extension PHAsset {
         if mediaType == .image {
             let options = PHContentEditingInputRequestOptions()
             options.isNetworkAccessAllowed = true
+            // Saying we can handle the adjustment data makes Photos hand back the unedited original and
+            // leave the edits (crops, filters, rotation) for us to apply. We can't, so take the rendered version.
             options.canHandleAdjustmentData = { _ -> Bool in
-                return true
+                return false
             }
             request = .contentEditing(
                 requestContentEditingInput(
