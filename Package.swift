@@ -1,23 +1,37 @@
-// swift-tools-version: 5.7
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 5.9
 
 import PackageDescription
 
 let package = Package(
     name: "ExyteMediaPicker",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v17)
     ],
     products: [
         .library(
             name: "ExyteMediaPicker",
             targets: ["ExyteMediaPicker"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/exyte/AnchoredPopup.git",
+            from: "1.1.3"
+        ),
+        .package(
+            url: "https://github.com/exyte/ActivityIndicatorView.git",
+            from: "2.0.1"
+        )
+    ],
     targets: [
         .target(
             name: "ExyteMediaPicker",
-            dependencies: []
+            dependencies: [
+                .product(name: "AnchoredPopup", package: "AnchoredPopup"),
+                .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
+            ],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
         ),
         .testTarget(
             name: "MediaPickerTests",

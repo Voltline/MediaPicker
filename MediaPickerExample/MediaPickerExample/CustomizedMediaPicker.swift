@@ -17,7 +17,7 @@ struct CustomizedMediaPicker: View {
 
     @State private var mediaPickerMode = MediaPickerMode.photos
     @State private var selectedAlbum: Album?
-    @State private var currentFullscreenMedia: Media?
+    @State private var fullscreenMedia: Media?
     @State private var showAlbumsDropDown: Bool = false
     @State private var videoIsBeingRecorded: Bool = false
 
@@ -83,10 +83,10 @@ struct CustomizedMediaPicker: View {
                     }
             }
         )
-        .showLiveCameraCell()
+        .liveCameraCell(.prominant)
         .albums($albums)
         .pickerMode($mediaPickerMode)
-        .currentFullscreenMedia($currentFullscreenMedia)
+        .fullscreenMedia($fullscreenMedia)
         .orientationHandler {
             switch $0 {
             case .lock: appDelegate.lockOrientationToPortrait()
@@ -97,15 +97,15 @@ struct CustomizedMediaPicker: View {
         .mediaSelectionLimit(maxCount)
         .mediaPickerTheme(
             main: .init(
-                albumSelectionBackground: .black,
+                pickerBackground: .black,
                 fullscreenPhotoBackground: .black
             ),
             selection: .init(
-                emptyTint: .white,
-                emptyBackground: .black.opacity(0.25),
-                selectedTint: Color("CustomPurple"),
-                fullscreenTint: .white
-            )
+                cellSelectedBorder: .customPurple,
+                cellSelectedBackground: .customPurple,
+                fullscreenEmptyBorder: .customPurple,
+                fullscreenSelectedBorder: .customPurple,
+                fullscreenSelectedBackground: .customPurple)
         )
         .overlay(alignment: .topLeading) {
             if showAlbumsDropDown {

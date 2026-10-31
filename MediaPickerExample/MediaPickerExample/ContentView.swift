@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ExyteMediaPicker
-import Combine
 
 struct ContentView: View {
 
@@ -54,13 +53,13 @@ struct ContentView: View {
         }
 
         // MARK: - Default media picker
-        .sheet(isPresented: $showDefaultMediaPicker) {
+        .fullScreenCover(isPresented: $showDefaultMediaPicker) {
             MediaPicker(
                 isPresented: $showDefaultMediaPicker,
                 onChange: { medias = $0 }
             )
-            .showLiveCameraCell()
-            .mediaSelectionLimit(1)
+            .mediaSelectionType(.photoAndVideo)
+            .mediaSelectionStyle(.count)
             .orientationHandler {
                 switch $0 {
                 case .lock: appDelegate.lockOrientationToPortrait()

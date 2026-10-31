@@ -12,9 +12,8 @@
 ![](https://img.shields.io/github/v/tag/exyte/MediaPicker?label=Version)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fexyte%2FMediaPicker%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/exyte/MediaPicker)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fexyte%2FMediaPicker%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/exyte/MediaPicker)
-[![SPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swiftpackageindex.com/exyte/MediaPicker)
-[![Cocoapods Compatible](https://img.shields.io/badge/cocoapods-Compatible-brightgreen.svg)](https://cocoapods.org/pods/ExyteMediaPicker)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swiftpackageindex.com/exyte/MediaPicker)
+[![Cocoapods](https://img.shields.io/badge/Cocoapods-Deprecated%20after%202.2.3-yellow.svg)](https://cocoapods.org/pods/ExyteMediaPicker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
 
 # Features
@@ -165,7 +164,7 @@ MediaPicker(
 - `flipCamera` - camera back/front
 
 ## Available modifiers
-`showLiveCameraCell` - show live camera feed cell in the top left corner of the gallery grid     
+`liveCameraCell` - show live camera feed cell in the top left corner of the gallery grid, type .none, .small, .prominant (2 cell height) defaults to .small        
 `mediaSelectionType` - limit displayed media type: .photo, .video or both   
 `mediaSelectionStyle` - a way to display selected/unselected media state: a counter or a simple checkmark   
 `mediaSelectionLimit` - the maximum selection quantity allowed, 'nil' for unlimited selection   
@@ -180,7 +179,7 @@ If your app restricts screen rotation, you can skip this section.
 
 We recommend locking orientation for MediaPicker, because default rotation animations don't look good on the camera screen. At the moment SwiftUI doesn't provide a way of locking screen orientation, so the library has an initializer with an `orientationHandler` parameter - a closure that is called when you enter/leave the camera screen inside MediaPicker. In this closure you need to use AppDelegate to lock/unlock the rotation - see example project for implementation.
 
-### Available modifiers: managing albums  
+### Available modifiers - managing albums  
 `albums` - a list of user's albums (like in Photos app), if you want to display them differently than `showingDefaultHeader` does.           
 `pickerMode` - set this if you don't plan to use the default header. Available options are:     
     * .photos - displays the default photos grid      
@@ -191,6 +190,16 @@ We recommend locking orientation for MediaPicker, because default rotation anima
 (see the custom picker in the example project for implementation)
 
 <img src="https://raw.githubusercontent.com/exyte/media/master/MediaPicker/2.jpg" width="250"/>
+
+### Available modifiers - preserving selection
+`selectedMedia` - pass a `Binding<[Media]>` to let the picker own the selection state across multiple presentations. The binding is updated on every selection change (same as `onChange`), and any items already in it will appear pre-selected when the picker opens. You can also preset the selection before presenting the picker.
+
+```swift
+@State var selectedMedia: [Media] = []
+
+MediaPicker(isPresented: $isPresented, onChange: { _ in })
+    .selectedMedia($selectedMedia)
+```
 
 ### Available modifiers: theme  
 `mediaPickerTheme` - color settings. Example usage (see `MediaPickerTheme` for all available settings):    
@@ -215,8 +224,8 @@ Here is an example of how you can customize colors and elements to create a cust
 
 To try out the MediaPicker examples:
 - Clone the repo `https://github.com/exyte/MediaPicker.git`
-- Open `Examples/Examples.xcworkspace` in the Xcode
-- Run it!
+- Open `MediaPickerExample.xcodeproj` in the Xcode
+- Try it!
 
 ## Installation
 
@@ -228,29 +237,19 @@ dependencies: [
 ]
 ```
 
-### CocoaPods
-
-```ruby
-pod 'ExyteMediaPicker'
-```
-
-### Carthage
-
-```ogdl
-github "Exyte/MediaPicker"
-```
-
 ## Requirements
 
-* iOS 16+
-* Xcode 13+ 
+* iOS 17+
+* Xcode 15+ 
 
 ## Our other open source SwiftUI libraries
 [PopupView](https://github.com/exyte/PopupView) - Toasts and popups library    
+[AnchoredPopup](https://github.com/exyte/AnchoredPopup) - Anchored Popup grows "out" of a trigger view (similar to Hero animation)    
 [Grid](https://github.com/exyte/Grid) - The most powerful Grid container    
 [ScalingHeaderScrollView](https://github.com/exyte/ScalingHeaderScrollView) - A scroll view with a sticky header which shrinks as you scroll    
 [AnimatedTabBar](https://github.com/exyte/AnimatedTabBar) - A tabbar with a number of preset animations   
 [Chat](https://github.com/exyte/chat) - Chat UI framework with fully customizable message cells, input view, and a built-in media picker  
+[CalendarView](https://github.com/exyte/CalendarView) - Calendar view with fully customizable month/day cells     
 [OpenAI](https://github.com/exyte/OpenAI) Wrapper lib for [OpenAI REST API](https://platform.openai.com/docs/api-reference/introduction)    
 [AnimatedGradient](https://github.com/exyte/AnimatedGradient) - Animated linear gradient     
 [ConcentricOnboarding](https://github.com/exyte/ConcentricOnboarding) - Animated onboarding flow    
